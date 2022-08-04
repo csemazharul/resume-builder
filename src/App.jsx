@@ -1,33 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+// 1. Import the extendTheme function
+import { extendTheme, ChakraProvider } from '@chakra-ui/react'
+import Home from './components/Home'
+// import Home from './components/Home'
 
+// 2. Extend the theme to include custom colors, fonts, etc
+const colors = {
+  brand: {
+    900: '#1a365d',
+    800: '#153e75',
+    700: '#2a69ac',
+  },
+}
+
+const theme = extendTheme({ colors })
+
+// 3. Pass the `theme` prop to the `ChakraProvider`
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <ChakraProvider theme={theme}>
+      <Home />
+    </ChakraProvider>
   )
 }
 
